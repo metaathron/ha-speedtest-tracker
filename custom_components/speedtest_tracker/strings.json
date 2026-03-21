@@ -1,0 +1,85 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Speedtest Tracker",
+        "description": "Configure access to the Speedtest Tracker API.",
+        "data": {
+          "base_url": "Base URL",
+          "bearer_token": "Bearer token",
+          "scan_interval": "Scan interval (seconds)",
+          "timeout": "Timeout (seconds)",
+          "verify_ssl": "Verify SSL"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Speedtest Tracker",
+        "data": {
+          "base_url": "Base URL",
+          "bearer_token": "Bearer token",
+          "timeout": "Timeout (seconds)",
+          "verify_ssl": "Verify SSL"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Failed to connect to the API.",
+      "invalid_auth": "Authentication failed.",
+      "invalid_response": "API returned an invalid response.",
+      "unknown": "Unexpected error. Check Home Assistant logs."
+    },
+    "abort": {
+      "already_configured": "This Speedtest Tracker endpoint is already configured.",
+      "reconfigure_successful": "Configuration updated successfully."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Speedtest Tracker options",
+        "data": {
+          "scan_interval": "Scan interval (seconds)",
+          "timeout": "Timeout (seconds)",
+          "verify_ssl": "Verify SSL"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "download": {"name": "Download"},
+      "upload": {"name": "Upload"},
+      "ping": {"name": "Ping"},
+      "packet_loss": {"name": "Packet loss"},
+      "ping_jitter": {"name": "Ping jitter"},
+      "download_latency_low": {"name": "Download latency low"},
+      "download_latency_iqm": {"name": "Download latency IQM"},
+      "download_latency_high": {"name": "Download latency high"},
+      "download_jitter": {"name": "Download jitter"},
+      "upload_latency_low": {"name": "Upload latency low"},
+      "upload_latency_iqm": {"name": "Upload latency IQM"},
+      "upload_latency_high": {"name": "Upload latency high"},
+      "upload_jitter": {"name": "Upload jitter"},
+      "download_elapsed": {"name": "Download elapsed"},
+      "upload_elapsed": {"name": "Upload elapsed"},
+      "server": {"name": "Server"},
+      "status": {"name": "Status"},
+      "last_test_time": {"name": "Last test time"},
+      "result_url": {"name": "Result URL"},
+      "ping_avg": {"name": "Ping avg"},
+      "ping_min": {"name": "Ping min"},
+      "ping_max": {"name": "Ping max"},
+      "download_avg": {"name": "Download avg"},
+      "download_min": {"name": "Download min"},
+      "download_max": {"name": "Download max"},
+      "upload_avg": {"name": "Upload avg"},
+      "upload_min": {"name": "Upload min"},
+      "upload_max": {"name": "Upload max"},
+      "total_results": {"name": "Total results"}
+    },
+    "binary_sensor": {
+      "healthy": {"name": "Healthy"},
+      "scheduled": {"name": "Scheduled"}
+    }
+  }
+}

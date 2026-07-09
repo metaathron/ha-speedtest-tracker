@@ -177,8 +177,13 @@ If you find this integration useful, you can support the development:
 
 ## License
 
-This project is free to use, modify, and distribute.
+## License
 
-Author: metaathron  
-Please retain attribution and link to the original repository:  
-https://github.com/metaathron/ha-speedtest-tracker
+This project is licensed under the MIT License.
+
+Copyright (c) 2026 [metaathron](https://github.com/metaathron/)
+
+You are free to use, modify, and distribute this software in accordance with the MIT License.
+
+If you find this project useful, attribution and a link back to the original repository are appreciated:
+<https://github.com/metaathron/ha-speedtest-tracker>

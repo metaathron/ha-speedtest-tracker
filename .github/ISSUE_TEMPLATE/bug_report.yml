@@ -1,0 +1,58 @@
+name: Bug report
+description: Report a bug in the ha-speedtest-tracker integration
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug! Please fill in as much detail as possible below.
+
+        > **Note on versions:** the `latest` tag/version is **not** the same as the most recently released version. Please provide a specific version number (e.g. `1.2.3`) for both the integration and Speedtest Tracker, not `latest`.
+
+  - type: input
+    id: integration-version
+    attributes:
+      label: ha-speedtest-tracker integration version
+      description: Specific integration version (not "latest") — see HACS or manifest.json
+      placeholder: "e.g. 1.4.0"
+    validations:
+      required: true
+
+  - type: input
+    id: backend-version
+    attributes:
+      label: Speedtest Tracker version
+      description: Specific version of the Speedtest Tracker server the integration talks to (not "latest")
+      placeholder: "e.g. 1.6.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug description
+      description: What happened, and what did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Describe step by step how to trigger the bug
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs
+      description: Paste the relevant part of the Home Assistant log (Settings > System > Logs)
+      render: shell
+    validations:
+      required: false

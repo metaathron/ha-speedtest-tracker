@@ -1,0 +1,12 @@
+name: Other
+description: Anything else — question, documentation, discussion, etc.
+title: "[Other]: "
+labels: ["question"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe your question or topic
+    validations:
+      required: true

@@ -1,0 +1,44 @@
+name: Feature request
+description: Suggest a new feature or improvement for the ha-speedtest-tracker integration
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the suggestion! Please fill in the details below.
+
+        > **Note on version:** the `latest` tag/version is **not** the same as the most recently released version of Speedtest Tracker. Please provide a specific version number.
+
+  - type: input
+    id: backend-version
+    attributes:
+      label: Speedtest Tracker version
+      description: Specific Speedtest Tracker version this request relates to (not "latest")
+      placeholder: "e.g. 1.6.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Requested feature
+      description: What would you like the integration to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation / use case
+      description: Why is this needed, what problem does it solve?
+    validations:
+      required: false
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Is there a current workaround or existing solution?
+    validations:
+      required: false

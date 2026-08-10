@@ -185,11 +185,24 @@ Configure your Speedtest Tracker (or external automation) to call this URL when 
 
 ---
 
+## Timezone Configuration
+
+Speedtest Tracker returns result timestamps (`updated_at`) as plain strings with no timezone offset — the actual moment they represent depends entirely on that **Speedtest Tracker instance's own `APP_TIMEZONE`** setting, which has nothing to do with the timezone your Home Assistant runs in. Speedtest Tracker defaults to `UTC` unless its operator configured it otherwise, and even then the setting isn't always applied consistently (see [alexjustesen/speedtest-tracker#1503](https://github.com/alexjustesen/speedtest-tracker/issues/1503)) — so this can't be auto-detected via the API.
+
+To get an accurate **Last test time** sensor, open the integration's **Configure** (options) dialog and pick how to interpret those timestamps:
+
+- **UTC** *(default)* — matches Speedtest Tracker's own default; use this unless you know your instance's `APP_TIMEZONE` was changed.
+- **Local** — assumes the timestamps already match this Home Assistant's own configured timezone (this was the integration's old, hardcoded behavior).
+- **Custom timezone…** — opens a searchable dropdown of IANA timezone names (e.g. `Europe/Prague`) so you can match whatever `APP_TIMEZONE` your Speedtest Tracker instance actually uses.
+
+If unsure, check the `APP_TIMEZONE` / `DISPLAY_TIMEZONE` environment variables of your Speedtest Tracker deployment and pick the matching option here.
+
+---
+
 ## Notes
 
-- `updated_at` is treated as local server time and aligned with Home Assistant timezone  
-- During running tests, last valid values are preserved  
-- Statistics are separated into a dedicated device for clarity  
+- During running tests, last valid values are preserved
+- Statistics are separated into a dedicated device for clarity
 
 ---
 

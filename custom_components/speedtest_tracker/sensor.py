@@ -12,7 +12,14 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.util import dt as dt_util
 
-from .const import ATTR_BYTES_PER_SECOND, ATTR_WEBHOOK_URL, DOMAIN
+from .const import (
+    ATTR_BYTES_PER_SECOND,
+    ATTR_WEBHOOK_URL,
+    CONF_RESULT_TIMEZONE,
+    DEFAULT_RESULT_TIMEZONE,
+    DOMAIN,
+    RESULT_TIMEZONE_LOCAL,
+)
 from .entity import SpeedtestTrackerCoordinatorEntity
 
 
@@ -348,9 +355,12 @@ class SpeedtestTrackerSensor(SpeedtestTrackerCoordinatorEntity, SensorEntity):
                 naive_dt = datetime.strptime(value, "%Y-%m-%d %H:%M:%S")
             except ValueError:
                 return None
-            tz = dt_util.get_time_zone(self.hass.config.time_zone)
-            if tz is None:
-                tz = dt_util.DEFAULT_TIME_ZONE
+            tz_name = self._entry.options.get(
+                CONF_RESULT_TIMEZONE, self._entry.data.get(CONF_RESULT_TIMEZONE, DEFAULT_RESULT_TIMEZONE)
+            )
+            if tz_name == RESULT_TIMEZONE_LOCAL:
+                tz_name = self.hass.config.time_zone
+            tz = dt_util.get_time_zone(tz_name) or dt_util.UTC
             return naive_dt.replace(tzinfo=tz)
         return self.entity_description.value_fn(self.coordinator.data)
 

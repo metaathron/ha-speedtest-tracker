@@ -50,8 +50,31 @@
         "data": {
           "scan_interval": "Interval aktualizace (sekundy)",
           "timeout": "Timeout (sekundy)",
-          "verify_ssl": "Ověřovat SSL"
+          "verify_ssl": "Ověřovat SSL",
+          "result_timezone": "Časová zóna Speedtest Tracker"
+        },
+        "data_description": {
+          "result_timezone": "Časové údaje vracené Speedtest Trackerem závisí na jeho vlastním nastavení APP_TIMEZONE, ne na časové zóně tohoto Home Assistanta. Speedtest Tracker má standardně UTC, pokud provozovatel nenastavil jinak."
         }
+      },
+      "custom_timezone": {
+        "title": "Vlastní časová zóna Speedtest Tracker",
+        "description": "Vyberte název časové zóny (IANA), který odpovídá nastavení APP_TIMEZONE vaší instance Speedtest Tracker.",
+        "data": {
+          "result_timezone": "Časová zóna"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Neplatný název časové zóny (např. Europe/Prague nebo UTC)."
+    }
+  },
+  "selector": {
+    "result_timezone_mode": {
+      "options": {
+        "utc": "UTC (výchozí u Speedtest Trackeru)",
+        "local": "Lokální (časová zóna tohoto Home Assistanta)",
+        "custom": "Vlastní časová zóna…"
       }
     }
   },

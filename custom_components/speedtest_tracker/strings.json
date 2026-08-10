@@ -50,8 +50,31 @@
         "data": {
           "scan_interval": "Scan interval (seconds)",
           "timeout": "Timeout (seconds)",
-          "verify_ssl": "Verify SSL"
+          "verify_ssl": "Verify SSL",
+          "result_timezone": "Speedtest Tracker timezone"
+        },
+        "data_description": {
+          "result_timezone": "The timestamps returned by Speedtest Tracker depend on its own APP_TIMEZONE setting, not on this Home Assistant's timezone. Speedtest Tracker defaults to UTC unless its operator configured it otherwise."
         }
+      },
+      "custom_timezone": {
+        "title": "Custom Speedtest Tracker timezone",
+        "description": "Pick the IANA timezone name matching your Speedtest Tracker instance's APP_TIMEZONE setting.",
+        "data": {
+          "result_timezone": "Timezone"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Not a valid timezone name (e.g. Europe/Prague or UTC)."
+    }
+  },
+  "selector": {
+    "result_timezone_mode": {
+      "options": {
+        "utc": "UTC (Speedtest Tracker's default)",
+        "local": "Local (this Home Assistant's timezone)",
+        "custom": "Custom timezone…"
       }
     }
   },

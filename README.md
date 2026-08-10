@@ -43,10 +43,24 @@ https://docs.speedtest-tracker.dev
 3. Select **Speedtest Tracker**  
 4. Enter:
    - Base URL (e.g. `https://your-instance`)
-   - Bearer Token
+   - Bearer Token (see [Getting a Bearer Token](#getting-a-bearer-token) below)
    - Scan interval
    - Timeout
    - SSL verification (optional)
+   - Webhook ID (a long random value is pre-filled — see [Webhook Setup](#webhook-setup))
+
+---
+
+## Getting a Bearer Token
+
+The integration authenticates against your Speedtest Tracker instance using an API Bearer Token, generated from the Speedtest Tracker web UI (not from Home Assistant):
+
+1. Log in to your Speedtest Tracker instance.
+2. Open **Settings** → **API Tokens** (Personal Access Tokens).
+3. Create a new token, e.g. `home-assistant`, and copy the generated value immediately — it is only shown once.
+4. Paste this value into the **Bearer Token** field when setting up (or reconfiguring) the integration in Home Assistant.
+
+Refer to the [Speedtest Tracker documentation](https://docs.speedtest-tracker.dev) if the exact location of the API Tokens page differs for your installed version.
 
 ---
 
@@ -136,6 +150,18 @@ This ensures:
 ---
 
 ## Webhook Setup
+
+The webhook lets Speedtest Tracker (or any external automation) tell Home Assistant to refresh immediately when a test finishes, instead of waiting for the next poll.
+
+### Webhook ID
+
+The Webhook ID is a configurable field in the config flow (both initial setup and reconfigure). A long, random value is pre-filled automatically, similar to how the spoolman-active integration handles its webhook ID — you can accept it as-is or replace it with your own value.
+
+> **Security note:** the webhook endpoint is unauthenticated — anyone who knows the webhook ID can trigger it. Keep it a long, random string, don't share it publicly, and rotate it (via **Reconfigure**) if you suspect it has leaked.
+
+If you're upgrading from an older version of this integration that already had an auto-generated webhook ID, that existing value is kept as-is and simply becomes editable — open **Reconfigure** if you want to change it, otherwise nothing changes for you.
+
+### Finding the webhook URL
 
 After adding the integration:
 

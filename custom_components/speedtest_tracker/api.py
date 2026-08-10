@@ -13,11 +13,19 @@ class SpeedtestTrackerApiClientError(Exception):
 
 
 class SpeedtestTrackerApiClientCommunicationError(SpeedtestTrackerApiClientError):
-    """Communication error."""
+    """Could not reach the host (DNS failure, connection refused, timeout, ...)."""
+
+
+class SpeedtestTrackerApiClientSSLError(SpeedtestTrackerApiClientError):
+    """TLS/SSL certificate validation failed."""
 
 
 class SpeedtestTrackerApiClientAuthenticationError(SpeedtestTrackerApiClientError):
-    """Authentication error."""
+    """Bearer token is missing or invalid (HTTP 401)."""
+
+
+class SpeedtestTrackerApiClientForbiddenError(SpeedtestTrackerApiClientError):
+    """Bearer token is valid but lacks permission for this endpoint (HTTP 403)."""
 
 
 class SpeedtestTrackerApiClientInvalidResponseError(SpeedtestTrackerApiClientError):
@@ -61,9 +69,13 @@ class SpeedtestTrackerApiClient:
                 timeout=self._timeout,
                 ssl=self._verify_ssl,
             ) as response:
-                if response.status in (401, 403):
+                if response.status == 401:
                     raise SpeedtestTrackerApiClientAuthenticationError(
                         f"Authentication failed with status {response.status}"
+                    )
+                if response.status == 403:
+                    raise SpeedtestTrackerApiClientForbiddenError(
+                        f"Token is not permitted to access this endpoint (status {response.status})"
                     )
                 if response.status >= 400:
                     text = await response.text()
@@ -73,6 +85,8 @@ class SpeedtestTrackerApiClient:
                 payload = await response.json(content_type=None)
         except SpeedtestTrackerApiClientError:
             raise
+        except aiohttp.ClientConnectorSSLError as err:
+            raise SpeedtestTrackerApiClientSSLError(str(err)) from err
         except (aiohttp.ClientError, TimeoutError) as err:
             raise SpeedtestTrackerApiClientCommunicationError(str(err)) from err
 

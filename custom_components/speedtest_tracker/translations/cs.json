@@ -1,0 +1,95 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Speedtest Tracker",
+        "description": "Nastavte přístup k API Speedtest Tracker.",
+        "data": {
+          "base_url": "Základní URL",
+          "bearer_token": "Bearer token",
+          "scan_interval": "Interval aktualizace (sekundy)",
+          "timeout": "Timeout (sekundy)",
+          "verify_ssl": "Ověřovat SSL",
+          "webhook_id": "ID webhooku"
+        },
+        "data_description": {
+          "webhook_id": "Je předvyplněno náhodné ID. Ponechte ho dlouhé a náhodné – funguje jako neautentizovaný token: kdokoli, kdo ho zná, může webhook zavolat. Měňte ho pouze v případě, že potřebujete vlastní hodnotu."
+        }
+      },
+      "reconfigure": {
+        "title": "Přenastavit Speedtest Tracker",
+        "data": {
+          "base_url": "Základní URL",
+          "bearer_token": "Bearer token",
+          "timeout": "Timeout (sekundy)",
+          "verify_ssl": "Ověřovat SSL",
+          "webhook_id": "ID webhooku"
+        },
+        "data_description": {
+          "webhook_id": "Je předvyplněno náhodné ID. Ponechte ho dlouhé a náhodné – funguje jako neautentizovaný token: kdokoli, kdo ho zná, může webhook zavolat. Měňte ho pouze v případě, že potřebujete vlastní hodnotu."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Nepodařilo se připojit k hostiteli. Zkontrolujte základní URL, zda Speedtest Tracker běží, a síťové připojení.",
+      "ssl_error": "Ověření SSL certifikátu selhalo. Zkontrolujte certifikát, případně (pokud rozumíte rizikům) vypněte ověřování SSL.",
+      "invalid_auth": "Ověření se nezdařilo: Bearer token chybí nebo je neplatný.",
+      "forbidden": "Bearer token byl pro tento endpoint odmítnut (HTTP 403). Zkontrolujte oprávnění tokenu.",
+      "invalid_response": "API vrátilo neplatnou odpověď.",
+      "unknown": "Neočekávaná chyba. Zkontrolujte logy Home Assistant."
+    },
+    "abort": {
+      "already_configured": "Tento endpoint Speedtest Tracker je již nakonfigurován.",
+      "reconfigure_successful": "Konfigurace byla úspěšně aktualizována."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Možnosti Speedtest Tracker",
+        "data": {
+          "scan_interval": "Interval aktualizace (sekundy)",
+          "timeout": "Timeout (sekundy)",
+          "verify_ssl": "Ověřovat SSL"
+        }
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "download": {"name": "Stahování"},
+      "upload": {"name": "Nahrávání"},
+      "ping": {"name": "Ping"},
+      "packet_loss": {"name": "Ztrátovost paketů"},
+      "ping_jitter": {"name": "Jitter pingu"},
+      "download_latency_low": {"name": "Latence stahování – min"},
+      "download_latency_iqm": {"name": "Latence stahování – IQM"},
+      "download_latency_high": {"name": "Latence stahování – max"},
+      "download_jitter": {"name": "Jitter stahování"},
+      "upload_latency_low": {"name": "Latence nahrávání – min"},
+      "upload_latency_iqm": {"name": "Latence nahrávání – IQM"},
+      "upload_latency_high": {"name": "Latence nahrávání – max"},
+      "upload_jitter": {"name": "Jitter nahrávání"},
+      "download_elapsed": {"name": "Doba trvání stahování"},
+      "upload_elapsed": {"name": "Doba trvání nahrávání"},
+      "server": {"name": "Server"},
+      "status": {"name": "Stav"},
+      "last_test_time": {"name": "Čas posledního testu"},
+      "result_url": {"name": "URL výsledku"},
+      "ping_avg": {"name": "Ping – průměr"},
+      "ping_min": {"name": "Ping – min"},
+      "ping_max": {"name": "Ping – max"},
+      "download_avg": {"name": "Stahování – průměr"},
+      "download_min": {"name": "Stahování – min"},
+      "download_max": {"name": "Stahování – max"},
+      "upload_avg": {"name": "Nahrávání – průměr"},
+      "upload_min": {"name": "Nahrávání – min"},
+      "upload_max": {"name": "Nahrávání – max"},
+      "total_results": {"name": "Celkový počet výsledků"}
+    },
+    "binary_sensor": {
+      "healthy": {"name": "V pořádku"},
+      "scheduled": {"name": "Naplánováno"}
+    }
+  }
+}

@@ -9,7 +9,11 @@
           "bearer_token": "Bearer token",
           "scan_interval": "Scan interval (seconds)",
           "timeout": "Timeout (seconds)",
-          "verify_ssl": "Verify SSL"
+          "verify_ssl": "Verify SSL",
+          "webhook_id": "Webhook ID"
+        },
+        "data_description": {
+          "webhook_id": "A pre-filled random ID is provided. Keep it long and random — it acts as an unauthenticated token: anyone who knows it can call your webhook URL. Only change it if you need a specific value."
         }
       },
       "reconfigure": {
@@ -18,13 +22,19 @@
           "base_url": "Base URL",
           "bearer_token": "Bearer token",
           "timeout": "Timeout (seconds)",
-          "verify_ssl": "Verify SSL"
+          "verify_ssl": "Verify SSL",
+          "webhook_id": "Webhook ID"
+        },
+        "data_description": {
+          "webhook_id": "A pre-filled random ID is provided. Keep it long and random — it acts as an unauthenticated token: anyone who knows it can call your webhook URL. Only change it if you need a specific value."
         }
       }
     },
     "error": {
-      "cannot_connect": "Failed to connect to the API.",
-      "invalid_auth": "Authentication failed.",
+      "cannot_connect": "Could not reach the host. Check the Base URL, that Speedtest Tracker is running, and network connectivity.",
+      "ssl_error": "SSL certificate validation failed. Check the certificate, or disable SSL verification if you understand the risk.",
+      "invalid_auth": "Authentication failed: the Bearer token is missing or invalid.",
+      "forbidden": "The Bearer token was rejected for this endpoint (HTTP 403). Check the token's permissions/abilities.",
       "invalid_response": "API returned an invalid response.",
       "unknown": "Unexpected error. Check Home Assistant logs."
     },

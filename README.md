@@ -216,8 +216,6 @@ If you find this integration useful, you can support the development:
 
 ## License
 
-## License
-
 This project is licensed under the MIT License.
 
 Copyright (c) 2026 [metaathron](https://github.com/metaathron/)

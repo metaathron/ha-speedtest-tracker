@@ -6,7 +6,7 @@ from datetime import timedelta
 from typing import Any
 
 from homeassistant.config_entries import ConfigEntry
-from homeassistant.core import HomeAssistant
+from homeassistant.core import CALLBACK_TYPE, HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from homeassistant.helpers.event import async_call_later
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
@@ -54,13 +54,13 @@ class SpeedtestTrackerCoordinator(DataUpdateCoordinator[dict[str, Any]]):
             update_interval=update_interval,
         )
 
-    def _schedule_refresh_in(self, seconds: int) -> None:
-        def _retry(_: Any) -> None:
+    def _schedule_refresh_in(self, seconds: int) -> CALLBACK_TYPE:
+        async def _retry(_: Any) -> None:
             if self._retry_unsub is not None and seconds == RUNNING_RETRY_SECONDS:
                 self._retry_unsub = None
             if self._post_run_unsub is not None and seconds != RUNNING_RETRY_SECONDS:
                 self._post_run_unsub = None
-            self.hass.async_create_task(self.async_request_refresh())
+            await self.async_request_refresh()
 
         return async_call_later(self.hass, seconds, _retry)
 

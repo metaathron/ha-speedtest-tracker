@@ -1,0 +1,118 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Speedtest Tracker",
+        "description": "Konfiguriere den Zugriff auf die Speedtest Tracker-API.",
+        "data": {
+          "base_url": "Basis-URL",
+          "bearer_token": "Bearer-Token",
+          "scan_interval": "Prüfintervall (Sekunden)",
+          "timeout": "Timeout (Sekunden)",
+          "verify_ssl": "SSL Überprüfen",
+          "webhook_id": "Webhook-ID"
+        },
+        "data_description": {
+          "webhook_id": "Es wird eine zufällige ID im Voraus ausgefüllt. Wähle eine lange und zufällige ID – sie fungiert als nicht authentifiziertes Token: Jeder, der sie kennt, kann deine Webhook-URL aufrufen. Änder sie nur, wenn du einen bestimmten Wert benötigst."
+        }
+      },
+      "reconfigure": {
+        "title": "Speedtest-Tracker neu konfigurieren",
+        "data": {
+          "base_url": "Basis-URL",
+          "bearer_token": "Bearer-token",
+          "timeout": "Timeout (Sekunden)",
+          "verify_ssl": "SSL Überprüfen",
+          "webhook_id": "Webhook-ID"
+        },
+        "data_description": {
+          "webhook_id": "Es wird eine zufällige ID im Voraus ausgefüllt. Wähle eine lange und zufällige ID – sie fungiert als nicht authentifiziertes Token: Jeder, der sie kennt, kann deine Webhook-URL aufrufen. Änder sie nur, wenn du einen bestimmten Wert benötigst."
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Der Host konnte nicht erreicht werden. Überprüfe die Basis-URL, ob der Speedtest Tracker läuft und ob eine Netzwerkverbindung besteht.",
+      "ssl_error": "Die Validierung des SSL-Zertifikats ist fehlgeschlagen. Überprüfe das Zertifikat oder deaktiviere die SSL-Überprüfung, wenn du dir der Risiken bewusst bist.",
+      "invalid_auth": "Authentifizierung fehlgeschlagen: Das Bearer-Token fehlt oder ist ungültig.",
+      "forbidden": "Das Bearer-Token wurde für diesen Endpunkt abgelehnt (HTTP 403). Überprüfen Sie die Berechtigungen (Abilities) des Tokens.",
+      "invalid_response": "Die API hat eine ungültige Antwort zurückgegeben.",
+      "unknown": "Unerwarteter Fehler. Überprüfe die Home Assistant-Protokolle."
+    },
+    "abort": {
+      "already_configured": "Dieser Speedtest Tracker-Endpunkt ist bereits konfiguriert.",
+      "reconfigure_successful": "Konfiguration erfolgreich aktualisiert."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Speedtest-Tracker Optionen",
+        "data": {
+          "scan_interval": "Prüfintervall (Sekunden)",
+          "timeout": "Timeout (Sekunden)",
+          "verify_ssl": "SSL Überprüfen",
+          "result_timezone": "Zeitzone des Speedtest Trackers"
+        },
+        "data_description": {
+          "result_timezone": "Die von Speedtest Tracker zurückgegebenen Zeitstempel hängen von der eigenen APP_TIMEZONE-Einstellung ab, nicht von der Zeitzone von Home Assistant. Speedtest Tracker verwendet standardmäßig UTC, sofern nichts anderes konfiguriert wurde."
+        }
+      },
+      "custom_timezone": {
+        "title": "Benutzerdefinierte Zeitzone für Speedtest Tracker",
+        "description": "Wähle den IANA-Zeitzonennamen aus, der mit der Einstellung APP_TIMEZONE deiner Speedtest-Tracker-Instanz übereinstimmt.",
+        "data": {
+          "result_timezone": "Zeitzone"
+        }
+      }
+    },
+    "error": {
+      "invalid_timezone": "Kein gültiger Zeitzonenname (z. B. Europe/Prague oder UTC)."
+    }
+  },
+  "selector": {
+    "result_timezone_mode": {
+      "options": {
+        "utc": "UTC (Speedtest Tracker Standard)",
+        "local": "Lokal (Zeitzone von Home Assistant)",
+        "custom": "Andere Zeitzone…"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "download": {"name": "Download"},
+      "upload": {"name": "Upload"},
+      "ping": {"name": "Ping"},
+      "packet_loss": {"name": "Paketverlust"},
+      "ping_jitter": {"name": "Ping-Jitter"},
+      "download_latency_low": {"name": "Download-Latenz Niedrig"},
+      "download_latency_iqm": {"name": "Download-Latenz IQM"},
+      "download_latency_high": {"name": "Download-Latenz Hoch"},
+      "download_jitter": {"name": "Download-Jitter"},
+      "upload_latency_low": {"name": "Upload-Latenz Niedrig"},
+      "upload_latency_iqm": {"name": "Upload-Latenz IQM"},
+      "upload_latency_high": {"name": "Upload-Latenz Hoch"},
+      "upload_jitter": {"name": "Upload-Jitter"},
+      "download_elapsed": {"name": "Downloaddauer"},
+      "upload_elapsed": {"name": "Uploaddauer"},
+      "server": {"name": "Server"},
+      "status": {"name": "Status"},
+      "last_test_time": {"name": "Zeitpunkt des letzten Tests"},
+      "result_url": {"name": "Ergebnis-URL"},
+      "ping_avg": {"name": "Ping Ø"},
+      "ping_min": {"name": "Ping Min"},
+      "ping_max": {"name": "Ping Max"},
+      "download_avg": {"name": "Download Ø"},
+      "download_min": {"name": "Download Min"},
+      "download_max": {"name": "Download Max"},
+      "upload_avg": {"name": "Upload Ø"},
+      "upload_min": {"name": "Upload Min"},
+      "upload_max": {"name": "Upload Max"},
+      "total_results": {"name": "Anzahl Ergebnisse"}
+    },
+    "binary_sensor": {
+      "healthy": {"name": "Gesund"},
+      "scheduled": {"name": "Geplant"}
+    }
+  }
+}
